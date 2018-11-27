@@ -4,6 +4,7 @@ class PostClass {
     this.content = content;
     this.user = user;
     this.timestamp = timestamp;
+    this.upVote = 0;
   }
 }
 

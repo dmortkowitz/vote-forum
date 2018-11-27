@@ -8,9 +8,16 @@ class App extends React.Component{
   constructor(){
     super();
     this.state = {
-      posts: [new Post('Title1', 'Content1', 'David', new Date(Date.now())), new Post('Title2', 'Content2', 'Hyewon', new Date(Date.now()))] 
+      posts: [new Post('Title1', 'Content1', 'David', new Date(Date.now())), new Post('Title2', 'Content2', 'Hyewon', new Date(Date.now()))]
     };
+    this.sortPosts = this.sortPosts.bind(this);
     this.addPost = this.addPost.bind(this);
+  }
+
+  sortPosts() {
+    this.postsCopy = this.state.posts.slice();
+    this.postsCopy.sort((postA, postB) => postB.upVote - postA.upVote);
+    this.setState({posts: this.postsCopy});
   }
 
   addPost(title, content, user) {
@@ -24,7 +31,7 @@ class App extends React.Component{
     return (
       <div>
         <CreatePost newPost={this.addPost} />
-        <Index posts={this.state.posts} />
+        <Index posts={this.state.posts} sortPosts={this.sortPosts} />
       </div>
     );
   }
