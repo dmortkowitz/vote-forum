@@ -2,21 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PostClass from '../models/Post';
 import Post from './Post';
+import { v4 } from 'uuid';
 
 class Index extends React.Component {
   constructor(props) {
     super(props);
     this.props = props;
     this.sortPosts = props.sortPosts;
-    this.posts = props.posts.map((post) => 
-      <Post post={post} key={post.title+'-'+post.content} sortPosts={this.sortPosts} />);
   }
 
   render() {
-    console.log("index render");
     this.posts = this.props.posts.map((post) => 
-      <Post post={post} key={post.title+'-'+post.content} sortPosts={this.sortPosts} />);
-    console.log(this.posts);
+      <Post post={post} key={v4()} sortPosts={this.sortPosts} />);
     return (
       <div>
         <style jsx>{`

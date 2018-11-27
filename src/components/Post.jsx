@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import PostClass from '../models/Post';
 
 class Post extends React.Component {
   constructor(props) {
@@ -8,14 +9,14 @@ class Post extends React.Component {
     this.state = {
       post: props.post,
     };
-    this.onUpVoteHandler = this.onUpVoteHandler.bind(this);
-    this.onDownVoteHandler = this.onDownVoteHandler.bind(this);
+    this.handleUpVote = this.handleUpVote.bind(this);
+    this.handleDownVote = this.handleDownVote.bind(this);
     this.title = this.state.post.title;
     this.content = this.state.post.content;
     this.user = this.state.post.user;
     this.timestamp = this.state.post.timestamp.toDateString();
   }
-  onUpVoteHandler() {
+  handleUpVote() {
     let post = this.state.post;
     post.upVote++;
     this.setState({post: post});
@@ -23,7 +24,7 @@ class Post extends React.Component {
 
   }   
 
-  onDownVoteHandler() {
+  handleDownVote() {
     let post = this.state.post;
     post.upVote--;
     this.setState({post: post});
@@ -36,7 +37,7 @@ class Post extends React.Component {
         <h3>{this.title} by {this.user} - {this.timestamp}</h3>
         <p>{this.content}</p>
         <p>Vote{this.state.post.upVote}</p>
-        <p><button onClick={this.onUpVoteHandler}>+</button>&nbsp;<button onClick={this.onDownVoteHandler}>-</button></p>
+        <p><button onClick={this.handleUpVote}>+</button>&nbsp;<button onClick={this.handleDownVote}>-</button></p>
       </div>
     );
   }
@@ -44,6 +45,7 @@ class Post extends React.Component {
 
 Post.propTypes = {
   sortPosts: PropTypes.func,
+  post: PropTypes.instanceOf(PostClass),
 };
 
 export default Post;
