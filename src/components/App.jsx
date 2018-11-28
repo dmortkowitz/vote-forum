@@ -2,13 +2,16 @@ import React from 'react';
 import Post from '../models/Post';
 import Index from './Index';
 import CreatePost from './CreatePost';
+import bootstrap from '../../node_modules/bootstrap/dist/css/bootstrap.css';
+
+var moment = require('moment');
 
 class App extends React.Component{
 
   constructor(){
     super();
     this.state = {
-      posts: [new Post('Title1', 'Content1', 'David', new Date(Date.now())), new Post('Title2', 'Content2', 'Hyewon', new Date(Date.now()))]
+      posts: [new Post('Title1', 'Content1', 'David', moment()), new Post('Title2', 'Content2', 'Hyewon', moment())]
     };
     this.sortPosts = this.sortPosts.bind(this);
     this.addPost = this.addPost.bind(this);
@@ -21,7 +24,7 @@ class App extends React.Component{
   }
 
   addPost(title, content, user) {
-    const timestamp = new Date(Date.now());
+    const timestamp = moment();
     let posts = this.state.posts.slice();
     posts.push(new Post(title, content, user, timestamp));
     this.setState({posts: posts});

@@ -10,13 +10,17 @@ function CreatePost(props) {
   return (
     <div>
       <style jsx>{`
+      #userForm {
+        width: 50%;
+        margin-left: 35px;
+      }
             `}
       </style>
-      <form onSubmit={onSubmitHandler}>
-        <input id='title' type='text' placeholder='title'></input>
-        <input id='content' type='text' placeholder='content'></input>
-        <input id='user' type='text' placeholder='user'></input>
-        <button type='submit'>Post</button>
+      <form onSubmit={onSubmitHandler} id='userForm'>
+        <input id='title' className='form-control' type='text' placeholder='title'></input>
+        <input id='content' className='form-control' type='text' placeholder='content'></input>
+        <input id='user' className='form-control' type='text' placeholder='user'></input>
+        <button type='submit' className='btn btn-light'>Post</button>
       </form>
 
     </div>
